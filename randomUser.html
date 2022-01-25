@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random User VueJS</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+    <style type="text/tailwindcss">
+        @layer utilities {
+            body {
+                font-family: 'Montserrat', sans-serif;
+                background: #f1f1f1;
+            }
+
+            .feminino {
+                @apply bg-pink-700 shadow-lg shadow-pink-700/50
+            }
+
+            .femininoBG {
+                @apply bg-pink-100 shadow-lg shadow-pink-700/50
+            }
+
+            .masculino {
+                @apply bg-blue-500 shadow-lg shadow-blue-500/50 
+            }
+
+            .masculinoBG {
+                @apply bg-blue-100 shadow-lg shadow-blue-500/50 
+            }
+
+            .neutro{
+                @apply bg-gray-400 shadow-lg
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" v-bind:class="generoBG" class="max-w-screen max-h-screen px-8 transition-all duration-500">
+        <div class="flex flex-col h-screen justify-center items-center">
+            <h1 class="text-3xl font-bold text-center block my-10"> {{titulo}} </h1>
+            <div
+                class="md:flex md:w-3/4 md:h-44 md:text-left xl:w-2/4 bg-white w-full text-center rounded-2xl drop-shadow-2xl  overflow-hidden">
+                <img v-bind:src="imagem" class="md:h-auto md:m-0 md:rounded-none rounded-full my-6 m-auto" width="128">
+                <div class="md:flex-col lg:flex lg:flex-row lg:w-full my-auto lg:text-xl">
+                    <div class="md:ml-10 md:my-2 md:max-h-full md:w-full lg:text-left">
+                        <h4 class="font-bold flex-col">{{nome}} {{sobrenome}}</h4>
+                        <p>{{email}}</p>
+                        <p>{{telefone}}</p>
+                    </div>
+                    <button v-bind:class="genero" @click="getUser"
+                        class="md:mx-10 md:my-0 px-10 py-2 my-6 text-white rounded transition-all duration-500 lg:text-sm">Gerar
+                        Usuario</button>
+
+                </div>
+
+
+
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        //Vue.component('Nome do component', 'template do component')
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                titulo: "Random User",
+                imagem: "https://2497.cdn.simplo7.net/static/2497/sku/tecido-tricoline-100-algodao-liso-tricoline-100-algodao-lisa-cinza-escuro-dx896--p-1521487476197.jpg",
+                nome: "User name",
+                sobrenome: "sobrenome",
+                email: "User email",
+                telefone: "User telefone",
+                genero: "neutro",
+                generoBG: "neutro",
+            },
+
+            methods: {
+                async getUser() {
+                    const res = await fetch("https://randomuser.me/api")
+                    const { results } = await res.json()
+                    this.imagem = results[0].picture.large;
+                    this.nome = results[0].name.first;
+                    this.sobrenome = results[0].name.last;
+                    this.email = results[0].email;
+                    this.telefone = results[0].phone;
+
+                    results[0].gender == 'male' ? this.genero = 'masculino' : this.genero = 'feminino'
+                    results[0].gender == 'male' ? this.generoBG = 'masculinoBG' : this.generoBG = 'femininoBG'
+                }
+
+            },
+
+        });
+    </script>
+</body>
+
+</html>
