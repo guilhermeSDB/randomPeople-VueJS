@@ -1,13 +1,16 @@
 # Random People
 
+## Mini Projeto
+
 <a href="https://guilhermesdb.github.io/randomPeople-VueJS/" target="_blank"><img src="https://thumbs2.imgbox.com/6e/30/10q3S1UX_t.png" alt="image host"/></a>
 
 > Este projeto gera Foto, Nome/Sobrenome, Email e Telefone randomicamente, criado como projeto para estudo de VueJS.
 
+
+
 ## 🚀 Instalando Random People
 
 Para instalar o Random People, siga esta etapa:
-
 
 Windows, Linux e macOS:
 ```
