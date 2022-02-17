@@ -26,4 +26,4 @@ ou veja a [Demonstração](https://guilhermesdb.github.io/randomPeople-VueJS/)
 
 Esse projeto está sob licença. Veja o arquivo [LICENÇA](LICENSE.md) para mais detalhes.
 
-[⬆ Voltar ao topo](#randomPeople-VueJS)<br>
+[⬆ Voltar ao topo](#random-people)<br>
